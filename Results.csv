@@ -1,0 +1,11 @@
+Hashtag,Hashtag.EqualityContract,Hashtag.Count,Hashtag.Rank,Hashtag.Tag
+"Hashtag { Count = 10, Rank = 1, Tag = uuuuuuu }",Jha.Models.Hashtag,10,1,uuuuuuu
+"Hashtag { Count = 7, Rank = 2, Tag = jjjjjjjjj }",Jha.Models.Hashtag,7,2,jjjjjjjjj
+"Hashtag { Count = 5, Rank = 3, Tag = bbbbbbb }",Jha.Models.Hashtag,5,3,bbbbbbb
+"Hashtag { Count = 5, Rank = 4, Tag = aaaaaaaaaaa }",Jha.Models.Hashtag,5,4,aaaaaaaaaaa
+"Hashtag { Count = 4, Rank = 5, Tag = eeeeeeeeee }",Jha.Models.Hashtag,4,5,eeeeeeeeee
+"Hashtag { Count = 3, Rank = 6, Tag = gggggggggggg }",Jha.Models.Hashtag,3,6,gggggggggggg
+"Hashtag { Count = 3, Rank = 7, Tag = ppppppp }",Jha.Models.Hashtag,3,7,ppppppp
+"Hashtag { Count = 2, Rank = 8, Tag = dddddddddd }",Jha.Models.Hashtag,2,8,dddddddddd
+"Hashtag { Count = 2, Rank = 9, Tag = oooooooooo }",Jha.Models.Hashtag,2,9,oooooooooo
+"Hashtag { Count = 2, Rank = 10, Tag = ssssssssss }",Jha.Models.Hashtag,2,10,ssssssssss

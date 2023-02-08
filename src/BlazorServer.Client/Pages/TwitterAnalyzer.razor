@@ -1,0 +1,46 @@
+﻿@page "/twitteranalyzer"
+@using Jha.Models
+@using Jha.Services
+@using Jha.Services.Events
+@implements IDisposable
+
+<h3>Twitter Analyzer</h3>
+
+<p>Tweets: @_totalTweets</p>
+
+<table>
+    <tr><td>Rank</td><td>Occurances</td><td>Hashtag</td></tr>
+@foreach(Hashtag tag in _top10Hashtags)
+{
+    <tr><td>@tag.Rank</td><td>@tag.Count</td><td>@tag.Tag</td></tr>
+}
+</table>
+
+@code {
+    [Inject]
+    private ITwitterService _twitterService { get; set; } = default!;
+    [Inject]
+    private ITweetAnalyzer _tweetAnalyzer { get; set; } = default!;
+
+    private int _totalTweets = 0;
+    private List<Hashtag> _top10Hashtags = new();
+
+    protected override void OnInitialized()
+    {
+        _twitterService.TweetPublished += OnTweetPublished;
+        _twitterService.StartStreamAsync();
+    }
+
+    private void OnTweetPublished(object? sender, TweetPublishedEventArgs args)
+    {
+        _tweetAnalyzer.Add(args.Tweet);
+        _totalTweets = _tweetAnalyzer.GetTweetCount();
+        _top10Hashtags = _tweetAnalyzer.GetTop10Hashtags();
+        InvokeAsync(() => StateHasChanged());
+    }
+
+    public void Dispose()
+    {
+        _twitterService.TweetPublished -= OnTweetPublished;
+    }
+}
