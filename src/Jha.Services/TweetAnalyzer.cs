@@ -39,10 +39,9 @@ namespace Jha.Services
 
                 if (!_distinctHashtags.TryGetValue(tag, out var hashtag))
                 {
-                    _distinctHashtags.Add(tag, new Hashtag
+                    _distinctHashtags.Add(tag, new Hashtag(tag)
                     {
                         Count = 1,
-                        Tag = tag
                     });
                 }
                 else
@@ -64,11 +63,10 @@ namespace Jha.Services
                 .Where(dict => dict.Value.Count > 1)
                 .OrderByDescending(dict => dict.Value.Count)
                 .Take(10)
-                .Select(dict => new Hashtag
+                .Select(dict => new Hashtag(dict.Value.Tag)
                 {
                     Rank = rank++,
                     Count = dict.Value.Count,
-                    Tag = dict.Value.Tag
                 })
                 .ToList();
         }

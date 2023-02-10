@@ -1,8 +1,7 @@
 ﻿namespace Jha.Models
 {
-    public record Tweet
+    public record struct Tweet(string AuthorId)
     {
-        public string AuthorId { get; set; } = default!;
         public List<Hashtag> Hashtags { get; set; } = new();
     }
 }

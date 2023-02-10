@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using Tweetinvi;
-using Tweetinvi.Core.Models;
 using Tweetinvi.Events;
 using Tweetinvi.Exceptions;
 using Tweetinvi.Models;
@@ -9,25 +8,30 @@ using Tweetinvi.Streaming.V2;
 using Tweetinvi.Streams;
 using Jha.Models;
 using Jha.Services.Events;
+using Microsoft.Extensions.Configuration;
 
 namespace Jha.Services
 {
     public partial class TwitterService : ITwitterService
     {
         private readonly ILogger<TwitterService> _logger = default!;
+        private readonly IConfiguration _configuration = default!;
         private readonly ISampleStreamV2 _tweetStream = default!;
-        private readonly ITweetAnalyzer _tweetAnalyzer = default!;
-        private Dictionary<string, Hashtag> _distinctHashtags = new(StringComparer.OrdinalIgnoreCase);
 
-        public TwitterService(ILogger<TwitterService> logger, ITweetAnalyzer tweetAnalyzer)
+        public TwitterService(ILogger<TwitterService> logger, IConfiguration configuration)
         {
             _logger = logger;
-            _tweetAnalyzer = tweetAnalyzer;
+            _configuration = configuration;
 
             // TODO: Move credentials somewhere
-            var appCredentials = new ConsumerOnlyCredentials("V825lD3tHNpAu8bNxBgdKjadf", "P2SdiJwYULWMKSCejW9k8KStThIrLNgHrj4AjzqOZmi5dj1ytU")
+            string apiKey = configuration.GetSection("TwitterStreamingApi:ApiKey").Value!;
+            string apiKeySecret = configuration.GetSection("TwitterStreamingApi:ApiKeySecret").Value!;
+            string bearerToken = configuration.GetSection("TwitterStreamingApi:BearerToken").Value!;
+            var appCredentials = new ConsumerOnlyCredentials(
+                apiKey, 
+                apiKeySecret)
             {
-                BearerToken = "AAAAAAAAAAAAAAAAAAAAALN%2BlgEAAAAA9ooB6zKDXMMoy514X0aPkVMX0d0%3DEJ8ug132nKUAuKjYdwCRNd5FhZD6w4PFTeibFOoqgs4Gbq3BW1" // bearer token is optional in some cases
+                BearerToken = bearerToken
             };
 
             var twitterClient = new TwitterClient(appCredentials);
@@ -43,6 +47,8 @@ namespace Jha.Services
             }
             catch (TwitterException e)
             {
+                _logger.LogDebug(e.ToString());
+
                 if (e.StatusCode == 429)
                 {
                     // TODO: This is never being hit
@@ -59,12 +65,12 @@ namespace Jha.Services
                 return;
             }
 
-            Models.Tweet tweet = new()
+            Tweet tweet = new(tweetV2.AuthorId)
             {
-                AuthorId = tweetV2.AuthorId,
                 Hashtags = GetTweetHashtags(tweetV2)
             };
 
+            _logger.LogDebug("Tweet published");
             OnTweetPublished(tweet);
         }
 
@@ -74,10 +80,7 @@ namespace Jha.Services
             {
                 HashtagV2[] hastagsV2 = tweet.Entities.Hashtags;
                 return hastagsV2
-                    .Select(t => new Hashtag
-                    {
-                        Tag = t.Tag,
-                    })
+                    .Select(t => new Hashtag(t.Tag))
                     .ToList();
             }
             return new List<Hashtag>();
@@ -94,7 +97,7 @@ namespace Jha.Services
         }
 
         public event EventHandler<TweetPublishedEventArgs> TweetPublished = default!;
-        protected virtual void OnTweetPublished(Models.Tweet tweet)
+        protected virtual void OnTweetPublished(Tweet tweet)
         {
             if (TweetPublished != null)
             {
