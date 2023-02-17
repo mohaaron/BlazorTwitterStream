@@ -4,9 +4,15 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>533ffd2d-cb53-41d5-8c49-e6dc38d388d3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorServer.Client.Shared\BlazorServer.Client.Shared.csproj" />
     <ProjectReference Include="..\Jha.Services\Jha.Services.csproj" />
   </ItemGroup>
 

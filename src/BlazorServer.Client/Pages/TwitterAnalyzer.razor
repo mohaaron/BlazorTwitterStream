@@ -1,8 +1,10 @@
 ﻿@page "/twitteranalyzer"
+@using Microsoft.AspNetCore.SignalR.Client
 @using Jha.Models
 @using Jha.Services
 @using Jha.Services.Events
 @implements IDisposable
+@implements IAsyncDisposable
 
 <h3>Twitter Analyzer</h3>
 
@@ -21,26 +23,63 @@
     private ITwitterService _twitterService { get; set; } = default!;
     [Inject]
     private ITweetAnalyzer _tweetAnalyzer { get; set; } = default!;
+    [Inject]
+    private NavigationManager Navigation { get; set; } = default!;
 
+    private HubConnection? _hubConnection;
     private int _totalTweets = 0;
     private List<Hashtag> _top10Hashtags = new();
 
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
-        _twitterService.TweetPublished += OnTweetPublished;
-        _twitterService.StartStreamAsync();
+        await StartTweetHub();
+        //_twitterService.TweetPublished += OnTweetPublished;
+        await _twitterService.StartStreamAsync();
+    }
+
+    private async Task StartTweetHub()
+    {
+        _hubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri("/tweethub")) // "https://localhost:65294/hubs/tweethub"
+            .WithAutomaticReconnect()
+            .Build();
+
+        string hubPath = nameof(Jha.Services.Hubs.ITweetHub.PublishTweet);
+        _hubConnection.On<Tweet>(hubPath, (tweet) =>
+        {
+            _tweetAnalyzer.Add(tweet);
+            _totalTweets = _tweetAnalyzer.GetTweetCount();
+            _top10Hashtags = _tweetAnalyzer.GetTop10Hashtags();
+
+            InvokeAsync(() => StateHasChanged());
+        });
+
+        await _hubConnection.StartAsync();
+
+        if (_hubConnection.State == HubConnectionState.Connected)
+            Console.WriteLine("connection started");
+    }
+
+    public bool IsConnected => _hubConnection?.State == HubConnectionState.Connected;
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_hubConnection is not null)
+        {
+            await _hubConnection.DisposeAsync();
+        }
     }
 
     private void OnTweetPublished(object? sender, TweetPublishedEventArgs args)
     {
-        _tweetAnalyzer.Add(args.Tweet);
-        _totalTweets = _tweetAnalyzer.GetTweetCount();
-        _top10Hashtags = _tweetAnalyzer.GetTop10Hashtags();
-        InvokeAsync(() => StateHasChanged());
+        //_tweetAnalyzer.Add(args.Tweet);
+        //_totalTweets = _tweetAnalyzer.GetTweetCount();
+        //_top10Hashtags = _tweetAnalyzer.GetTop10Hashtags();
+        //InvokeAsync(() => StateHasChanged());
     }
 
     public void Dispose()
     {
-        _twitterService.TweetPublished -= OnTweetPublished;
+        //_twitterService.TweetPublished -= OnTweetPublished;
     }
 }

@@ -5,31 +5,37 @@ using Tweetinvi.Exceptions;
 using Tweetinvi.Models;
 using Tweetinvi.Models.V2;
 using Tweetinvi.Streaming.V2;
-using Tweetinvi.Streams;
 using Jha.Models;
 using Jha.Services.Events;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.SignalR;
+using Jha.Services.Hubs;
 
 namespace Jha.Services
 {
+    // TODO: Rename TwitterService to TwitterStreamingApiService
     public partial class TwitterService : ITwitterService
     {
         private readonly ILogger<TwitterService> _logger = default!;
         private readonly IConfiguration _configuration = default!;
         private readonly ISampleStreamV2 _tweetStream = default!;
+        private readonly IHubContext<TweetHub, ITweetHub> _hubContext = default!;
 
-        public TwitterService(ILogger<TwitterService> logger, IConfiguration configuration)
+        public TwitterService(
+            ILogger<TwitterService> logger, 
+            IConfiguration configuration, 
+            IHubContext<TweetHub, ITweetHub> hubContext)
         {
             _logger = logger;
             _configuration = configuration;
+            _hubContext = hubContext;
 
             // TODO: Move credentials somewhere
             string apiKey = configuration.GetSection("TwitterStreamingApi:ApiKey").Value!;
             string apiKeySecret = configuration.GetSection("TwitterStreamingApi:ApiKeySecret").Value!;
             string bearerToken = configuration.GetSection("TwitterStreamingApi:BearerToken").Value!;
-            var appCredentials = new ConsumerOnlyCredentials(
-                apiKey, 
-                apiKeySecret)
+
+            var appCredentials = new ConsumerOnlyCredentials(apiKey, apiKeySecret)
             {
                 BearerToken = bearerToken
             };
@@ -70,7 +76,8 @@ namespace Jha.Services
                 Hashtags = GetTweetHashtags(tweetV2)
             };
 
-            _logger.LogDebug("Tweet published");
+            _logger.LogDebug("Tweet published"); // TODO: Logging to LogDebug is not working
+            _hubContext.Clients.All.PublishTweet(tweet); // TODO: Move SignalR tweet publishing to external service/server
             OnTweetPublished(tweet);
         }
 
@@ -88,7 +95,14 @@ namespace Jha.Services
 
         public async Task StartStreamAsync()
         {
-            await _tweetStream.StartAsync();
+            try
+            {
+                await _tweetStream.StartAsync();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
         }
 
         public void StopStream()

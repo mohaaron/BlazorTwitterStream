@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jha.Models", "Jha.Models\Jh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServer.Client", "BlazorServer.Client\BlazorServer.Client.csproj", "{03E09591-6383-476C-A0D5-3E2853697572}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JhaTest.Tests", "JhaTest.Tests\JhaTest.Tests.csproj", "{52279E9B-70A8-49BF-BD7C-3FF03417738D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JhaTest.Tests", "JhaTest.Tests\JhaTest.Tests.csproj", "{52279E9B-70A8-49BF-BD7C-3FF03417738D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServer.Client.Shared", "BlazorServer.Client.Shared\BlazorServer.Client.Shared.csproj", "{122CE2A2-BB70-428D-8471-D46EC0264235}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{52279E9B-70A8-49BF-BD7C-3FF03417738D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52279E9B-70A8-49BF-BD7C-3FF03417738D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52279E9B-70A8-49BF-BD7C-3FF03417738D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{122CE2A2-BB70-428D-8471-D46EC0264235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{122CE2A2-BB70-428D-8471-D46EC0264235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{122CE2A2-BB70-428D-8471-D46EC0264235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{122CE2A2-BB70-428D-8471-D46EC0264235}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

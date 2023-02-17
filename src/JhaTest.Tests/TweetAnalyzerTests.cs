@@ -89,30 +89,12 @@ namespace JhaTest.Tests
                         AuthorId = "23948324",
                         Hashtags = new List<Hashtag>
                         {
-                            new Hashtag()
-                            {
-                                Tag = "uuuuuuu"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "bbbbbbb"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "aaaaaaaaaaa"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "dddddddddd"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "dddddddddd"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "gggggggggggg"
-                            },
+                            new Hashtag("uuuuuuu"),
+                            new Hashtag("bbbbbbb"),
+                            new Hashtag("aaaaaaaaaaa"),
+                            new Hashtag("dddddddddd"),
+                            new Hashtag("dddddddddd"),
+                            new Hashtag("gggggggggggg"),
                         }
                     },
                     new Tweet()
@@ -120,30 +102,12 @@ namespace JhaTest.Tests
                         AuthorId = "23948324",
                         Hashtags = new List<Hashtag>
                         {
-                            new Hashtag()
-                            {
-                                Tag = "uuuuuuu"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "bbbbbbb"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "aaaaaaaaaaa"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "eeeeeeeeee"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "gggggggggggg"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "gggggggggggg"
-                            },
+                            new Hashtag("uuuuuuu"),
+                            new Hashtag("bbbbbbb"),
+                            new Hashtag("aaaaaaaaaaa"),
+                            new Hashtag("eeeeeeeeee"),
+                            new Hashtag("gggggggggggg"),
+                            new Hashtag("gggggggggggg"),
                         }
                     },
                     new Tweet()
@@ -151,30 +115,12 @@ namespace JhaTest.Tests
                         AuthorId = "23948324",
                         Hashtags = new List<Hashtag>
                         {
-                            new Hashtag()
-                            {
-                                Tag = "uuuuuuu"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "bbbbbbb"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "aaaaaaaaaaa"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "eeeeeeeeee"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "eeeeeeeeee"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "eeeeeeeeee"
-                            },
+                            new Hashtag("uuuuuuu"),
+                            new Hashtag("bbbbbbb"),
+                            new Hashtag("aaaaaaaaaaa"),
+                            new Hashtag("eeeeeeeeee"),
+                            new Hashtag("eeeeeeeeee"),
+                            new Hashtag("eeeeeeeeee"),
                         }
                     },
                     new Tweet()
@@ -182,30 +128,12 @@ namespace JhaTest.Tests
                         AuthorId = "23948324",
                         Hashtags = new List<Hashtag>
                         {
-                            new Hashtag()
-                            {
-                                Tag = "uuuuuuu"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "bbbbbbb"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "aaaaaaaaaaa"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "jjjjjjjjj"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "jjjjjjjjj"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "oooooooooo"
-                            },
+                            new Hashtag("uuuuuuu"),
+                            new Hashtag("bbbbbbb"),
+                            new Hashtag("aaaaaaaaaaa"),
+                            new Hashtag("jjjjjjjjj"),
+                            new Hashtag("jjjjjjjjj"),
+                            new Hashtag("oooooooooo"),
                         }
                     },
                     new Tweet()
@@ -213,30 +141,12 @@ namespace JhaTest.Tests
                         AuthorId = "23948324",
                         Hashtags = new List<Hashtag>
                         {
-                            new Hashtag()
-                            {
-                                Tag = "uuuuuuu"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "bbbbbbb"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "aaaaaaaaaaa"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "jjjjjjjjj"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "jjjjjjjjj"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "oooooooooo"
-                            },
+                            new Hashtag("uuuuuuu"),
+                            new Hashtag("bbbbbbb"),
+                            new Hashtag("aaaaaaaaaaa"),
+                            new Hashtag("jjjjjjjjj"),
+                            new Hashtag("jjjjjjjjj"),
+                            new Hashtag("oooooooooo"),
                         }
                     },
                     new Tweet()
@@ -244,30 +154,12 @@ namespace JhaTest.Tests
                         AuthorId = "23948324",
                         Hashtags = new List<Hashtag>
                         {
-                            new Hashtag()
-                            {
-                                Tag = "uuuuuuu"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "ppppppp"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "ssssssssss"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "jjjjjjjjj"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "wwwwwwwwwww"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "wwwwwwwwwww"
-                            },
+                            new Hashtag("uuuuuuu"),
+                            new Hashtag("ppppppp"),
+                            new Hashtag("ssssssssss"),
+                            new Hashtag("jjjjjjjjj"),
+                            new Hashtag("wwwwwwwwwww"),
+                            new Hashtag("wwwwwwwwwww"),
                         }
                     },
                     new Tweet()
@@ -275,14 +167,8 @@ namespace JhaTest.Tests
                         AuthorId = "23948324",
                         Hashtags = new List<Hashtag>
                         {
-                            new Hashtag()
-                            {
-                                Tag = "uuuuuuu"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "ppppppp"
-                            },
+                            new Hashtag("uuuuuuu"),
+                            new Hashtag("ppppppp"),
                         }
                     },
                     new Tweet()
@@ -290,18 +176,9 @@ namespace JhaTest.Tests
                         AuthorId = "23948324",
                         Hashtags = new List<Hashtag>
                         {
-                            new Hashtag()
-                            {
-                                Tag = "uuuuuuu"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "ppppppp"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "ssssssssss"
-                            },
+                            new Hashtag("uuuuuuu"),
+                            new Hashtag("ppppppp"),
+                            new Hashtag("ssssssssss"),
                         }
                     },
                     new Tweet()
@@ -309,14 +186,8 @@ namespace JhaTest.Tests
                         AuthorId = "23948324",
                         Hashtags = new List<Hashtag>
                         {
-                            new Hashtag()
-                            {
-                                Tag = "uuuuuuu"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "jjjjjjjjj"
-                            },
+                            new Hashtag("uuuuuuu"),
+                            new Hashtag("jjjjjjjjj"),
                         }
                     },
                     new Tweet()
@@ -324,14 +195,8 @@ namespace JhaTest.Tests
                         AuthorId = "23948324",
                         Hashtags = new List<Hashtag>
                         {
-                            new Hashtag()
-                            {
-                                Tag = "uuuuuuu"
-                            },
-                            new Hashtag()
-                            {
-                                Tag = "jjjjjjjjj"
-                            },
+                            new Hashtag("uuuuuuu"),
+                            new Hashtag("jjjjjjjjj"),
                         }
                     },
                 };
