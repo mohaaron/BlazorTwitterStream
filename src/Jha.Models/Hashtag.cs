@@ -1,4 +1,4 @@
-﻿namespace Jha.Models
+﻿namespace Twitter.Models
 {
     public record Hashtag(string Tag)
     {

@@ -1,0 +1,18 @@
+﻿<h3>Twitter Top 10 Hashtags</h3>
+
+<p>Tweets: @TotalTweets</p>
+
+<table>
+    <tr><td>Rank</td><td>Occurances</td><td>Hashtag</td></tr>
+@foreach(Hashtag tag in Top10Hashtags)
+{
+    <tr><td>@tag.Rank</td><td>@tag.Count</td><td>@tag.Tag</td></tr>
+}
+</table>
+
+@code {
+    [Parameter]
+    public List<Hashtag> Top10Hashtags { get; set; } = new();
+    [Parameter]
+    public int TotalTweets { get; set; } = 0;
+}

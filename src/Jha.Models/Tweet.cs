@@ -1,4 +1,4 @@
-﻿namespace Jha.Models
+﻿namespace Twitter.Models
 {
     public record struct Tweet(string AuthorId)
     {

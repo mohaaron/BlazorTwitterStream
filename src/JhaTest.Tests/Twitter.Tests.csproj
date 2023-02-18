@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Jha.Services\Jha.Services.csproj" />
+    <ProjectReference Include="..\Jha.Services\Twitter.Services.csproj" />
   </ItemGroup>
 
 </Project>

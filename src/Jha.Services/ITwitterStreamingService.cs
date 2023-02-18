@@ -1,10 +1,10 @@
 ﻿using Tweetinvi.Models.V2;
-using Jha.Models;
-using Jha.Services.Events;
+using Twitter.Models;
+using Twitter.Services.Events;
 
-namespace Jha.Services
+namespace Twitter.Services
 {
-    public interface ITwitterService
+    public interface ITwitterStreamingService
     {
         /// <summary>
         /// Use to bubble tweets from service to subscriber.

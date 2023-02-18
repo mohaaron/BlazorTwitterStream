@@ -1,5 +1,5 @@
-using Jha.Models;
-using Jha.Services;
+using Twitter.Models;
+using Twitter.Services;
 using Moq;
 using Xunit.Abstractions;
 

@@ -1,11 +1,11 @@
-﻿using Jha.Models;
+﻿using Twitter.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jha.Services.Events
+namespace Twitter.Services.Events
 {
     public class TweetPublishedEventArgs : EventArgs
     {

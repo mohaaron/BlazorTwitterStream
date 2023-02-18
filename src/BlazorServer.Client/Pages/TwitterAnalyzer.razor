@@ -1,34 +1,39 @@
 ﻿@page "/twitteranalyzer"
 @using Microsoft.AspNetCore.SignalR.Client
-@using Jha.Models
-@using Jha.Services
-@using Jha.Services.Events
+@using Twitter.Models
+@using Twitter.Services
+@using Twitter.Services.Events
+@using Twitter.Services.Hubs;
+@using Twitter.Client.Shared;
 @implements IDisposable
 @implements IAsyncDisposable
 
 <h3>Twitter Analyzer</h3>
 
-<p>Tweets: @_totalTweets</p>
-
-<table>
-    <tr><td>Rank</td><td>Occurances</td><td>Hashtag</td></tr>
-@foreach(Hashtag tag in _top10Hashtags)
+@if (!connected)
 {
-    <tr><td>@tag.Rank</td><td>@tag.Count</td><td>@tag.Tag</td></tr>
+    <p>Connecting to twitter.</p>
+    return;
 }
-</table>
+
+@if (connected)
+{
+    <TwitterTopTenHashtags TotalTweets="@_totalTweets" Top10Hashtags="@_top10Hashtags" />
+}
 
 @code {
     [Inject]
-    private ITwitterService _twitterService { get; set; } = default!;
+    private ITwitterStreamingService _twitterService { get; set; } = default!;
     [Inject]
     private ITweetAnalyzer _tweetAnalyzer { get; set; } = default!;
     [Inject]
     private NavigationManager Navigation { get; set; } = default!;
 
+    private TwitterTopTenHashtags _topTenRef;
     private HubConnection? _hubConnection;
     private int _totalTweets = 0;
     private List<Hashtag> _top10Hashtags = new();
+    private bool connected = false;
 
     protected async override Task OnInitializedAsync()
     {
@@ -44,8 +49,7 @@
             .WithAutomaticReconnect()
             .Build();
 
-        string hubPath = nameof(Jha.Services.Hubs.ITweetHub.PublishTweet);
-        _hubConnection.On<Tweet>(hubPath, (tweet) =>
+        _hubConnection.On<Tweet>(nameof(ITweetHub.PublishTweet), (tweet) =>
         {
             _tweetAnalyzer.Add(tweet);
             _totalTweets = _tweetAnalyzer.GetTweetCount();
@@ -55,8 +59,8 @@
         });
 
         await _hubConnection.StartAsync();
-
-        if (_hubConnection.State == HubConnectionState.Connected)
+        connected = _hubConnection.State == HubConnectionState.Connected;
+        if (connected)
             Console.WriteLine("connection started");
     }
 

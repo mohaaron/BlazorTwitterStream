@@ -1,0 +1,36 @@
+﻿@page "/twitteranalyzer"
+@using Twitter.Models
+@using Twitter.Services
+@implements IDisposable
+
+@*@if (_tweetAnalysis == null)
+{
+    return;
+}*@
+
+<h3>Twitter Analyzer</h3>
+
+<p>Tweets: @_totalTweets</p>
+
+<table>
+    <tr><td>Rank</td><td>Hashtag</td></tr>
+@foreach(Hashtag tag in _top10Hashtags)
+{
+    <tr><td>@tag.Rank</td><td>@tag.Tag</td></tr>
+}
+</table>
+
+@code {
+    private int _totalTweets = 0;
+    private List<Hashtag> _top10Hashtags = new();
+
+    protected override void OnInitialized()
+    {
+        //
+    }
+
+    public void Dispose()
+    {
+        //
+    }
+}

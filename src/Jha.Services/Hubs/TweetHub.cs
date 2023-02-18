@@ -1,7 +1,7 @@
-﻿using Jha.Models;
+﻿using Twitter.Models;
 using Microsoft.AspNetCore.SignalR;
 
-namespace Jha.Services.Hubs
+namespace Twitter.Services.Hubs
 {
     public interface ITweetHub
     {

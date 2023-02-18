@@ -3,15 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33326.253
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jha.Services", "Jha.Services\Jha.Services.csproj", "{54688742-95D1-4AB4-A678-899A999E3641}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Services", "Jha.Services\Twitter.Services.csproj", "{54688742-95D1-4AB4-A678-899A999E3641}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jha.Models", "Jha.Models\Jha.Models.csproj", "{64D7FEE2-178F-48A0-8EE0-A18379ACCD68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Models", "Jha.Models\Twitter.Models.csproj", "{64D7FEE2-178F-48A0-8EE0-A18379ACCD68}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServer.Client", "BlazorServer.Client\BlazorServer.Client.csproj", "{03E09591-6383-476C-A0D5-3E2853697572}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterServer.Client", "BlazorServer.Client\TwitterServer.Client.csproj", "{03E09591-6383-476C-A0D5-3E2853697572}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JhaTest.Tests", "JhaTest.Tests\JhaTest.Tests.csproj", "{52279E9B-70A8-49BF-BD7C-3FF03417738D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Tests", "JhaTest.Tests\Twitter.Tests.csproj", "{52279E9B-70A8-49BF-BD7C-3FF03417738D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServer.Client.Shared", "BlazorServer.Client.Shared\BlazorServer.Client.Shared.csproj", "{122CE2A2-BB70-428D-8471-D46EC0264235}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Client.Shared", "BlazorServer.Client.Shared\Twitter.Client.Shared.csproj", "{122CE2A2-BB70-428D-8471-D46EC0264235}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterWasm.Client", "BlazorWasm.Client\TwitterWasm.Client.csproj", "{AE3C5264-7925-4EBD-BDD6-08994AB3CC35}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamingWorker", "TwitterStreamingWorker\TwitterStreamingWorker.csproj", "{8A4BD503-BAE5-49C3-AB19-A31A3056AFE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Client.Api", "TwitterStreaming.Client.Api\Twitter.Client.Api.csproj", "{493117E8-8E2F-4F96-BB2F-4CD96C0DDB3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{122CE2A2-BB70-428D-8471-D46EC0264235}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{122CE2A2-BB70-428D-8471-D46EC0264235}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{122CE2A2-BB70-428D-8471-D46EC0264235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE3C5264-7925-4EBD-BDD6-08994AB3CC35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE3C5264-7925-4EBD-BDD6-08994AB3CC35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE3C5264-7925-4EBD-BDD6-08994AB3CC35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE3C5264-7925-4EBD-BDD6-08994AB3CC35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A4BD503-BAE5-49C3-AB19-A31A3056AFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4BD503-BAE5-49C3-AB19-A31A3056AFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A4BD503-BAE5-49C3-AB19-A31A3056AFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4BD503-BAE5-49C3-AB19-A31A3056AFE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{493117E8-8E2F-4F96-BB2F-4CD96C0DDB3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{493117E8-8E2F-4F96-BB2F-4CD96C0DDB3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{493117E8-8E2F-4F96-BB2F-4CD96C0DDB3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{493117E8-8E2F-4F96-BB2F-4CD96C0DDB3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

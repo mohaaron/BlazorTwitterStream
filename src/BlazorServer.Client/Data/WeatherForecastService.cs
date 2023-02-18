@@ -1,4 +1,4 @@
-namespace BlazorServer.Client.Data
+namespace TwitterServer.Client.Data
 {
     public class WeatherForecastService
     {

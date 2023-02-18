@@ -1,7 +1,7 @@
-﻿using Jha.Models;
+﻿using Twitter.Models;
 using Tweetinvi.Models.V2;
 
-namespace Jha.Services
+namespace Twitter.Services
 {
     public interface ITweetAnalyzer
     {

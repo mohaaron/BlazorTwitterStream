@@ -1,11 +1,9 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.ResponseCompression;
-using BlazorServer.Client.Data;
-using Jha.Services;
-using Jha.Services.Hubs;
-using Microsoft.AspNetCore.SignalR.Client;
-using BlazorServer.Client.Shared;
+using TwitterServer.Client.Data;
+using Twitter.Services;
+using Twitter.Services.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +20,7 @@ builder.Services.AddResponseCompression(opts =>
 
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddScoped<ITweetAnalyzer, TweetAnalyzer>(); // Scoped keeps service for the life of the circuit
-builder.Services.AddSingleton<ITwitterService, TwitterService>(); // TODO: Move twitter service to external web server/api
+builder.Services.AddSingleton<ITwitterStreamingService, TwitterStreamingService>(); // TODO: Move twitter service to external web server/api
 //builder.Services.AddTransient<ITwitterService, TwitterService>(); // BUG: Transient is caused an error when navigating back to page
 
 var app = builder.Build();

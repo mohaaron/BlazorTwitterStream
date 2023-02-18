@@ -5,24 +5,24 @@ using Tweetinvi.Exceptions;
 using Tweetinvi.Models;
 using Tweetinvi.Models.V2;
 using Tweetinvi.Streaming.V2;
-using Jha.Models;
-using Jha.Services.Events;
+using Twitter.Models;
+using Twitter.Services.Events;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.SignalR;
-using Jha.Services.Hubs;
+using Twitter.Services.Hubs;
 
-namespace Jha.Services
+namespace Twitter.Services
 {
     // TODO: Rename TwitterService to TwitterStreamingApiService
-    public partial class TwitterService : ITwitterService
+    public partial class TwitterStreamingService : ITwitterStreamingService
     {
-        private readonly ILogger<TwitterService> _logger = default!;
+        private readonly ILogger<TwitterStreamingService> _logger = default!;
         private readonly IConfiguration _configuration = default!;
         private readonly ISampleStreamV2 _tweetStream = default!;
         private readonly IHubContext<TweetHub, ITweetHub> _hubContext = default!;
 
-        public TwitterService(
-            ILogger<TwitterService> logger, 
+        public TwitterStreamingService(
+            ILogger<TwitterStreamingService> logger, 
             IConfiguration configuration, 
             IHubContext<TweetHub, ITweetHub> hubContext)
         {
