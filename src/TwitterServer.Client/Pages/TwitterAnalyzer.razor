@@ -4,22 +4,20 @@
 @using Twitter.Services
 @using Twitter.Services.Events
 @using Twitter.Services.Hubs;
-@using Twitter.Client.Shared;
+@using Twitter.Client.Shared.Components;
 @implements IDisposable
 @implements IAsyncDisposable
 
-<h3>Twitter Analyzer</h3>
+<h2>Twitter Analyzer</h2>
 
-@if (!connected)
+@if (!IsConnected)
 {
-    <p>Connecting to twitter.</p>
+    <Loading Message="Loading twitter stream" Completed="false" />
     return;
 }
 
-@if (connected)
-{
-    <TwitterTopTenHashtags TotalTweets="@_totalTweets" Top10Hashtags="@_top10Hashtags" />
-}
+<h3>Twitter Top 10 Hashtags</h3>
+<TwitterTopTenHashtags TotalTweets="@_totalTweets" Top10Hashtags="@_top10Hashtags" />
 
 @code {
     [Inject]
@@ -29,11 +27,10 @@
     [Inject]
     private NavigationManager Navigation { get; set; } = default!;
 
-    private TwitterTopTenHashtags _topTenRef;
+    public bool IsConnected => _hubConnection?.State == HubConnectionState.Connected;
     private HubConnection? _hubConnection;
     private int _totalTweets = 0;
     private List<Hashtag> _top10Hashtags = new();
-    private bool connected = false;
 
     protected async override Task OnInitializedAsync()
     {
@@ -45,7 +42,7 @@
     private async Task StartTweetHub()
     {
         _hubConnection = new HubConnectionBuilder()
-            .WithUrl(Navigation.ToAbsoluteUri("/tweethub")) // "https://localhost:65294/hubs/tweethub"
+            .WithUrl(Navigation.ToAbsoluteUri("/tweethub")) // Url to hub server
             .WithAutomaticReconnect()
             .Build();
 
@@ -59,12 +56,10 @@
         });
 
         await _hubConnection.StartAsync();
-        connected = _hubConnection.State == HubConnectionState.Connected;
-        if (connected)
+
+        if (IsConnected)
             Console.WriteLine("connection started");
     }
-
-    public bool IsConnected => _hubConnection?.State == HubConnectionState.Connected;
 
     public async ValueTask DisposeAsync()
     {

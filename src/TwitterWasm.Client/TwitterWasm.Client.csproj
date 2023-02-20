@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazorServer.Client.Shared\Twitter.Client.Shared.csproj" />
-    <ProjectReference Include="..\Jha.Services\Twitter.Services.csproj" />
+    <ProjectReference Include="..\Twitter.Client.Shared\Twitter.Client.Shared.csproj" />
+    <ProjectReference Include="..\Twitter.Services\Twitter.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

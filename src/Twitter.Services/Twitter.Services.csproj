@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Jha.Models\Twitter.Models.csproj" />
+    <ProjectReference Include="..\Twitter.Models\Twitter.Models.csproj" />
   </ItemGroup>
 
 </Project>

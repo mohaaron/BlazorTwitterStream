@@ -53,7 +53,7 @@ namespace Twitter.Services
             }
             catch (TwitterException e)
             {
-                _logger.LogDebug(e.ToString());
+                _logger.LogInformation(e.ToString());
 
                 if (e.StatusCode == 429)
                 {
@@ -67,7 +67,7 @@ namespace Twitter.Services
         {
             if (tweetV2 == null)
             {
-                _logger.LogDebug("Tweet is null.");
+                _logger.LogInformation("Tweet is null.");
                 return;
             }
 
@@ -76,7 +76,7 @@ namespace Twitter.Services
                 Hashtags = GetTweetHashtags(tweetV2)
             };
 
-            _logger.LogDebug("Tweet published"); // TODO: Logging to LogDebug is not working
+            _logger.LogInformation("Tweet published"); // TODO: Logging to LogDebug is not working
             _hubContext.Clients.All.PublishTweet(tweet); // TODO: Move SignalR tweet publishing to external service/server
             OnTweetPublished(tweet);
         }
