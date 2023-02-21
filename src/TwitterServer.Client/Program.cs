@@ -19,8 +19,8 @@ builder.Services.AddResponseCompression(opts =>
 });
 
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddScoped<ITweetAnalyzer, TweetAnalyzer>(); // Scoped keeps service for the life of the circuit
-builder.Services.AddSingleton<ITwitterStreamingService, TwitterStreamingService>(); // TODO: Move twitter service to external web server/api
+builder.Services.AddSingleton<ITweetAnalyzer, TweetAnalyzer>(); // Scoped keeps service for the life of the circuit
+builder.Services.AddScoped<ITwitterStreamingService, TwitterStreamingService>(); // TODO: Move twitter service to external web server/api
 //builder.Services.AddTransient<ITwitterService, TwitterService>(); // BUG: Transient is caused an error when navigating back to page
 
 var app = builder.Build();

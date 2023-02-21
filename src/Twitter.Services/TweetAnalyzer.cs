@@ -1,12 +1,12 @@
 ﻿using Twitter.Models;
-using Tweetinvi.Models.V2;
+using System.Collections.Concurrent;
 
 namespace Twitter.Services
 {
     public class TweetAnalyzer : ITweetAnalyzer
     {
         private List<Tweet> _tweets = new();
-        private Dictionary<string, Hashtag> _distinctHashtags = new();
+        private ConcurrentDictionary<string, Hashtag> _distinctHashtags = new();
 
         public TweetAnalyzer()
         {
@@ -37,9 +37,10 @@ namespace Twitter.Services
             {
                 string tag = hashtags[i].Tag;
 
+                // TODO: Why does this if stop working when this is a singleton in DI?
                 if (!_distinctHashtags.TryGetValue(tag, out var hashtag))
                 {
-                    _distinctHashtags.Add(tag, new Hashtag(tag)
+                    _distinctHashtags.TryAdd(tag, new Hashtag(tag)
                     {
                         Count = 1,
                     });
