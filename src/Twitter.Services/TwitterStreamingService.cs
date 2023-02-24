@@ -14,15 +14,16 @@ using Twitter.Services.Hubs;
 namespace Twitter.Services
 {
     // TODO: Rename TwitterService to TwitterStreamingApiService
-    public partial class TwitterStreamingService : ITwitterStreamingService
+    public partial class TwitterStreamingApiService : ITwitterStreamingApiService
     {
-        private readonly ILogger<TwitterStreamingService> _logger = default!;
+        private readonly ILogger<TwitterStreamingApiService> _logger = default!;
         private readonly IConfiguration _configuration = default!;
         private readonly ISampleStreamV2 _tweetStream = default!;
         private readonly IHubContext<TweetHub, ITweetHub> _hubContext = default!;
+        private bool _streamStarted = false;
 
-        public TwitterStreamingService(
-            ILogger<TwitterStreamingService> logger, 
+        public TwitterStreamingApiService(
+            ILogger<TwitterStreamingApiService> logger, 
             IConfiguration configuration, 
             IHubContext<TweetHub, ITweetHub> hubContext)
         {
@@ -97,7 +98,11 @@ namespace Twitter.Services
         {
             try
             {
+                if (_streamStarted)
+                    return;
+                
                 await _tweetStream.StartAsync();
+                _streamStarted = true;
             }
             catch (Exception ex)
             {

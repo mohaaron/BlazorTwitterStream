@@ -5,7 +5,7 @@ namespace Twitter.Services
 {
     public class TweetAnalyzer : ITweetAnalyzer
     {
-        private List<Tweet> _tweets = new();
+        private int _total = 0;
         private ConcurrentDictionary<string, Hashtag> _distinctHashtags = new();
 
         public TweetAnalyzer()
@@ -19,25 +19,22 @@ namespace Twitter.Services
         /// <param name="tweet"></param>
         public void Add(Tweet tweet)
         {
-            _tweets.Add(tweet);
+            _total++;
             AddHashtags(tweet.Hashtags.ToArray());
         }
 
-        public List<Tweet> GetTweets() => _tweets;
-
         /// <summary>
-        /// TEST: Tweet count should equal tweets added.
+        /// 
         /// </summary>
         /// <returns></returns>
-        public int GetTweetCount() => _tweets.Count;
+        public int GetCount() => _total;
 
-        public void AddHashtags(Hashtag[] hashtags)
+        private void AddHashtags(Hashtag[] hashtags)
         {
             for (int i = 0; i < hashtags.Length; i++)
             {
                 string tag = hashtags[i].Tag;
 
-                // TODO: Why does this if stop working when this is a singleton in DI?
                 if (!_distinctHashtags.TryGetValue(tag, out var hashtag))
                 {
                     _distinctHashtags.TryAdd(tag, new Hashtag(tag)
@@ -52,18 +49,13 @@ namespace Twitter.Services
             }
         }
 
-        public List<Hashtag> GetTop10Hashtags()
+        public List<Hashtag> GetTopHashtags(int number)
         {
-            // TEST: 10 results from 15 hashtags
-            // TEST: Results are ordered correctly
-            // TEST: Input hashtags with count of 1 returns 0 results.
-
             int rank = 1;
-
             return _distinctHashtags
                 .Where(dict => dict.Value.Count > 1)
                 .OrderByDescending(dict => dict.Value.Count)
-                .Take(10)
+                .Take(number)
                 .Select(dict => new Hashtag(dict.Value.Tag)
                 {
                     Rank = rank++,

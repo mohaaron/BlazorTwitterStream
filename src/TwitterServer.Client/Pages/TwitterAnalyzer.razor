@@ -21,7 +21,7 @@
 
 @code {
     [Inject]
-    private ITwitterStreamingService _twitterService { get; set; } = default!;
+    private ITwitterStreamingApiService _twitterService { get; set; } = default!;
     [Inject]
     private ITweetAnalyzer _tweetAnalyzer { get; set; } = default!;
     [Inject]
@@ -49,8 +49,8 @@
         _hubConnection.On<Tweet>(nameof(ITweetHub.PublishTweet), (tweet) =>
         {
             _tweetAnalyzer.Add(tweet);
-            _totalTweets = _tweetAnalyzer.GetTweetCount();
-            _top10Hashtags = _tweetAnalyzer.GetTop10Hashtags();
+            _totalTweets = _tweetAnalyzer.GetCount();
+            _top10Hashtags = _tweetAnalyzer.GetTopHashtags(10);
 
             InvokeAsync(() => StateHasChanged());
         });

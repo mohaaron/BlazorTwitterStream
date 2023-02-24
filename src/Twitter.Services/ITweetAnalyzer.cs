@@ -6,8 +6,7 @@ namespace Twitter.Services
     public interface ITweetAnalyzer
     {
         void Add(Tweet tweets);
-        int GetTweetCount();
-        List<Tweet> GetTweets();
-        List<Hashtag> GetTop10Hashtags();
+        int GetCount();
+        List<Hashtag> GetTopHashtags(int number);
     }
 }

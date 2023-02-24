@@ -18,7 +18,7 @@ namespace JhaTest.Tests
                 tweetAnalyzer.Add(tweet);
             }
             
-            var hashtags = tweetAnalyzer.GetTop10Hashtags();
+            var hashtags = tweetAnalyzer.GetTopHashtags(10);
 
             Assert.Collection(hashtags, 
                 hashtag => Assert.Equal(1, hashtag.Rank),
@@ -45,7 +45,7 @@ namespace JhaTest.Tests
                 tweetAnalyzer.Add(tweet);
             }
 
-            var hashtags = tweetAnalyzer.GetTop10Hashtags();
+            var hashtags = tweetAnalyzer.GetTopHashtags(10);
 
             Assert.Collection(hashtags,
                 hashtag => Assert.Equal(10, hashtag.Count),
@@ -72,7 +72,7 @@ namespace JhaTest.Tests
                 tweetAnalyzer.Add(tweet);
             }
 
-            var hashtags = tweetAnalyzer.GetTop10Hashtags();
+            var hashtags = tweetAnalyzer.GetTopHashtags(10);
 
             Assert.Equal(10, hashtags.Count);
         }

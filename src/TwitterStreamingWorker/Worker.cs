@@ -9,10 +9,10 @@ namespace TwitterStreamingWorker
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
-        private readonly ITwitterStreamingService _twitterService;
+        private readonly ITwitterStreamingApiService _twitterService;
         private readonly IHubContext<TweetHub, ITweetHub> _hubContext;
 
-        public Worker(ILogger<Worker> logger, ITwitterStreamingService twitterService, IHubContext<TweetHub, ITweetHub> hubContext)
+        public Worker(ILogger<Worker> logger, ITwitterStreamingApiService twitterService, IHubContext<TweetHub, ITweetHub> hubContext)
         {
             _logger = logger;
             _twitterService = twitterService;

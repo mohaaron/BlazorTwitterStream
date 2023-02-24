@@ -8,6 +8,6 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-builder.Services.AddScoped<ITwitterStreamingService, TwitterStreamingService>(); // BUG: Tweetinvi.ISampleStreamV2.TweetReceived event never fires
+builder.Services.AddScoped<ITwitterStreamingApiService, TwitterStreamingApiService>(); // BUG: Tweetinvi.ISampleStreamV2.TweetReceived event never fires
 
 await builder.Build().RunAsync();

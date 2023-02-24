@@ -19,9 +19,14 @@ builder.Services.AddResponseCompression(opts =>
 });
 
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddSingleton<ITweetAnalyzer, TweetAnalyzer>(); // Scoped keeps service for the life of the circuit
-builder.Services.AddScoped<ITwitterStreamingService, TwitterStreamingService>(); // TODO: Move twitter service to external web server/api
-//builder.Services.AddTransient<ITwitterService, TwitterService>(); // BUG: Transient is caused an error when navigating back to page
+
+// Blazor Server: Scoped instantiates service per circuit lifetime
+// Blazor WebAssembly: Scoped instantiates service per Browser/Tab  lifetime
+builder.Services.AddSingleton<ITweetAnalyzer, TweetAnalyzer>();
+
+// TODO: Move twitter service to external web server/api
+// TODO: Singleton is not working as singleton
+builder.Services.AddSingleton<ITwitterStreamingApiService, TwitterStreamingApiService>();
 
 var app = builder.Build();
 

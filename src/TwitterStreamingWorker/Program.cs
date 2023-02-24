@@ -5,7 +5,7 @@ using TwitterStreamingWorker;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSignalR();
-builder.Services.AddSingleton<ITwitterStreamingService, TwitterStreamingService>();
+builder.Services.AddSingleton<ITwitterStreamingApiService, TwitterStreamingApiService>();
 builder.Services.AddHostedService<Worker>();
 
 var app = builder.Build();

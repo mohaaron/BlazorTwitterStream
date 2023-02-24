@@ -4,7 +4,7 @@ using Twitter.Services.Events;
 
 namespace Twitter.Services
 {
-    public interface ITwitterStreamingService
+    public interface ITwitterStreamingApiService
     {
         /// <summary>
         /// Use to bubble tweets from service to subscriber.
