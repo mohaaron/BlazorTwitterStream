@@ -68,7 +68,6 @@ namespace Twitter.Services
         {
             if (tweetV2 == null)
             {
-                _logger.LogInformation("Tweet is null.");
                 return;
             }
 
@@ -77,7 +76,6 @@ namespace Twitter.Services
                 Hashtags = GetTweetHashtags(tweetV2)
             };
 
-            _logger.LogInformation("Tweet published"); // TODO: Logging to LogDebug is not working
             _hubContext.Clients.All.PublishTweet(tweet); // TODO: Move SignalR tweet publishing to external service/server
             OnTweetPublished(tweet);
         }
@@ -98,6 +96,7 @@ namespace Twitter.Services
         {
             try
             {
+                // FIX: stream started is always false even though this is a singleton.
                 if (_streamStarted)
                     return;
                 
@@ -107,6 +106,7 @@ namespace Twitter.Services
             catch (Exception ex)
             {
                 ex.ToString();
+                _logger.LogInformation(ex.ToString());
             }
         }
 

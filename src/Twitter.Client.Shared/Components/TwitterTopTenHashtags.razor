@@ -14,4 +14,15 @@
     public List<Hashtag> Top10Hashtags { get; set; } = new();
     [Parameter]
     public int TotalTweets { get; set; } = 0;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Console.WriteLine($"First Rendered {GetType()}");
+            return;
+        }
+
+        Console.WriteLine($"Rendered {GetType()}");
+    }
 }
